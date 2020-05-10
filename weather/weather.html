@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather</title>
+</head>
+<body background="bg.jpg">
+    
+    
+    <center>
+        <h1>WEATHER</h1>
+        <br><br><br><br><br>
+        <img src="icon.png" height="100" width="100" >
+        <br><br><br>
+    <input type="text" id="city" placeholder="enter the name of the city">
+    <br><br>
+    <button id="btn"  type="submit">SEARCH</button>
+
+
+    
+<div id="info" >
+    
+</div>
+</center>
+    <script>
+        
+        document.getElementById("btn").onclick=()=>{
+            let city= document.getElementById("city").value;
+       fetch(`http://api.openweathermap.org/data/2.5/find?q=${city}&units=metric&appid=294a56a066bc074a5dd48780c74f6d57`).then (data=>{
+           return data.json()
+       }).then (data2=>{
+        console.log(data2);
+        let name= data2.list[0].name
+        let temp=data2.list[0].main.temp
+        let fltemp=data2.list[0].main.feels_like
+        let maxt=data2.list[0].main.temp_max
+        let mint=data2.list[0].main.temp_min
+        let speed=data2.list[0].wind.speed
+        let pre=data2.list[0].main.pressure
+        
+        document.getElementById("info").innerHTML=`
+        <font color="white">    
+        <ul>
+                
+                <li>   NAME:${name};</li>   
+                <li> CURRENT TEMP: ${temp}°c</li>              
+                <li> FEELS LIKE: ${fltemp}°c</li>                
+                <li> MAXIMUM TEMP: ${maxt}°c</li>                
+                <li> MINIMUM TEMP: ${mint}°c</li>                
+                <li> WIND PRESSURE: ${pre} mb</li>                
+                <li> WIND SPEED: ${speed} KMPH</li>       
+                                   
+        </ul>
+    </font>
+        `
+       })
+        };
+       
+    </script>
+</body>
+</html>
