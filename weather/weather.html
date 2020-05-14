@@ -4,18 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>weather</title>
-</head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css" />
+  <style>
+    body {
+    font-family: 'Inconsolata', serif;
+    font-size: 22px;
+    }
+    </style>
+    </head>
 <body background="bg.jpg">
     
     
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="#">SoumyaWeather</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">More</a></li>
+              <li><a href="#">get API</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">About Us</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
     <center>
-        <h1>WEATHER</h1>
-        <br><br><br><br><br>
+        <h1 style="font-size: 60px;">WEATHER</h1>
+        <br><br><br>
         <img src="icon.png" height="100" width="100" >
         <br><br><br>
-    <input type="text" id="city" placeholder="enter the name of the city">
+    <input type="text" id="city" style="border-radius: 25px;
+    border: 2px solid rgb(0, 0, 0);
+    padding: 20px; 
+    width: 200px;
+    height: 15px;" placeholder="enter the name of the city">
     <br><br>
-    <button id="btn"  type="submit">SEARCH</button>
+    <button id="btn" style="border-radius: 10px; border: 2px solid rgb(0, 0, 0); padding: 5px; " type="submit">SEARCH</button>
 
 
     
@@ -58,5 +94,6 @@
         };
        
     </script>
+    
 </body>
 </html>
