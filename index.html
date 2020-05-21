@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="http://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet" type="text/css" />
+  <style>
+    body {
+    font-family: 'Inconsolata', serif;
+    font-size: 22px;
+    }
+    </style>
+    </head>
+<body background="bg.jpg">
+    
+    
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="#">SoumyaWeather</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="#">Home</a></li>
+              <li><a href="#">More</a></li>
+              <li><a href="#">get API</a></li>
+              <li><a href="#">Contact</a></li>
+              <li><a href="#">About Us</a></li>
+            </ul>
+          </div>
+        </div> 
+      </nav>
+    
+    <center>
+        <h1 style="font-size: 60px;">WEATHER</h1>
+        <br><br><br>
+        <img src="icon.png" id="icon" height="100" width="100" >
+        <br><br><br>
+    <input type="text" id="city" style="border-radius: 25px;
+    border: 2px solid rgb(0, 0, 0);
+    padding: 20px; 
+    width: 200px;
+    height: 15px;" placeholder="enter the name of the city">
+    <br><br>
+    <button id="btn" style="border-radius: 10px; border: 2px solid rgb(0, 0, 0); padding: 5px; " type="submit">SEARCH</button>
+
+
+    
+<div id="info" >
+    
+</div>
+</center>
+    <script>
+        
+        document.getElementById("btn").onclick=()=>{
+            let city= document.getElementById("city").value;
+       fetch(`http://api.openweathermap.org/data/2.5/find?q=${city}&units=metric&appid=294a56a066bc074a5dd48780c74f6d57`).then (data=>{
+           return data.json()
+       }).then (data2=>{
+        console.log(data2);
+        let name= data2.list[0].name
+        let temp=data2.list[0].main.temp
+        let fltemp=data2.list[0].main.feels_like
+        let maxt=data2.list[0].main.temp_max
+        let mint=data2.list[0].main.temp_min
+        let speed=data2.list[0].wind.speed
+        let pre=data2.list[0].main.pressure
+        
+        document.getElementById("info").innerHTML=`
+        <font color="white">    
+        <ul>
+                
+                <li>   NAME:${name};</li>   
+                <li> CURRENT TEMP: ${temp}°c</li>              
+                <li> FEELS LIKE: ${fltemp}°c</li>                
+                <li> MAXIMUM TEMP: ${maxt}°c</li>                
+                <li> MINIMUM TEMP: ${mint}°c</li>                
+                <li> WIND PRESSURE: ${pre} mb</li>                
+                <li> WIND SPEED: ${speed} KMPH</li>       
+                                   
+        </ul>
+    </font>
+        `
+       })
+       
+        };
+       
+    </script>
+    
+</body>
+</html>
