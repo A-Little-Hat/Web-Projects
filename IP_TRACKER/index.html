@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    body {
+      background-color: white;
+    }
+    </style>
+  <title>IP TRACKER</title>
+</head>
+<body >
+  <center>
+
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">IP_TRACKER</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="index.html">Home</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a href="https://app.ipgeolocation.io/">get API</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://github.com/A-Little-Hat"><span class="glyphicon glyphicon-log-in"></span>EV_Profile</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav> 
+    <br><br><br>
+    <img src="https://www.hobby-o.com/wp-content/uploads/2015/08/global-network_303.jpg" height="250" width="250">
+    <br><br><br><br>
+    <input type="text" id="ipadd"  placeholder="Enter the IP address">
+    <br>
+    <button id="btn" style="padding: 10; color: rgb(18, 46, 138);"  type="submit">SEARCH</button>
+    <br><br>
+    <div id="info">
+
+    </div>
+  </center>
+ 
+  
+  <script>
+    document.getElementById("btn").onclick=async ()=>{
+  
+    var ip= document.getElementById("ipadd").value
+    console.log(ip)
+    var data = await fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=e44115d7e16c45a789e88167ec0e7976&ip=${ip}`)
+    var  data2=await data.json();
+    console.log(data2)
+    var cname=data2.country_code3
+    var cont=data2.continent_name
+    var capital=data2.country_capital
+    var time=data2.time_zone.current_time
+    if(data2.message!=""){
+      document.getElementById("info").innerHTML=`
+      <table>
+    <li>country code = ${cname}</li>
+    <li>capital = ${capital}</li>
+    <li>continent = ${cont}</li>
+    <li>current time = ${time}</li>
+  </table>
+      `
+    }
+    else{
+      document.getElementById("info").innerHTML=`
+      
+      wrong ip address
+      
+      `}
+
+    }  
+      
+    
+  </script>
+</body>
+</html>
